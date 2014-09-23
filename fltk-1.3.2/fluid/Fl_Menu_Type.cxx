@@ -240,9 +240,9 @@ void Fl_Menu_Item_Type::write_static() {
     int thislevel = q->level; if (q->is_parent()) thislevel++;
     int nextlevel =
       (q->next && q->next->is_menu_item()) ? q->next->level : t->level+1;
-    while (thislevel > nextlevel) {write_c(" {0,0,0,0,0,0,0,0,0},\n"); thislevel--;}
+    while (thislevel > nextlevel) {write_c(" { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 },\n"); thislevel--;}
   }
-  write_c(" {0,0,0,0,0,0,0,0,0}\n};\n");
+  write_c(" { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }\n};\n");
 
   if (k) {
     // Write menu item variables...
