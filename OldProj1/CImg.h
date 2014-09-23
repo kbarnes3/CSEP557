@@ -57,6 +57,7 @@
 #include <cstring>
 #include <cmath>
 #include <ctime>
+#include <limits>
 
 // Overcome VisualC++ 6.0 compilers namespace 'std::' bug
 #ifdef cimg_use_visualcpp6
@@ -640,7 +641,10 @@ namespace cimg_library {
 
   // Never use the following macro in your own code !
 #define cimg_exception_err(etype,disp_flag) \
+  __pragma(warning(push)) \
+  __pragma(warning(disable:4127)) \
   if (cimg_debug>=1) { \
+  __pragma(warning(pop)) \
     std::va_list ap; \
     va_start(ap,format); \
     std::vsprintf(message,format,ap); \
@@ -827,12 +831,12 @@ namespace cimg_library {
     };
 
     template<> struct type<unsigned char> {
-      static unsigned char min() { return 0; }
-      static unsigned char max() { return (unsigned char)~0U; }
+      static unsigned char min() { return std::numeric_limits<unsigned char>::min(); }
+      static unsigned char max() { return std::numeric_limits<unsigned char>::max(); }
     };
     template<> struct type<unsigned short> {
-      static unsigned short min() { return 0; }
-      static unsigned short max() { return (unsigned short)~0U; }
+      static unsigned short min() { return std::numeric_limits<unsigned short>::min(); }
+      static unsigned short max() { return std::numeric_limits<unsigned short>::max();; }
     };
     template<> struct type<unsigned int> {
       static unsigned int min() { return 0; }
