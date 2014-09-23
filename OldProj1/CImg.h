@@ -5339,7 +5339,7 @@ namespace cimg_library {
     }
 
     static LRESULT APIENTRY _handle_events(HWND window,UINT msg,WPARAM wParam,LPARAM lParam) {
-      CImgDisplay* disp = (CImgDisplay*)GetWindowLong(window,GWL_USERDATA);
+      CImgDisplay* disp = (CImgDisplay*)GetWindowLongPtr(window,GWLP_USERDATA);
       MSG st_msg;
 
       switch(msg) {
@@ -5489,8 +5489,8 @@ namespace cimg_library {
       disp->button = disp->wheel = disp->key = 0;
       disp->is_resized = disp->is_moved = disp->is_event = false;
       if (disp->events) {
-        SetWindowLong(disp->window,GWL_USERDATA,(LONG)disp);
-        SetWindowLong(disp->window,GWL_WNDPROC,(LONG)_handle_events);
+        SetWindowLongPtr(disp->window,GWLP_USERDATA,(LONG_PTR)disp);
+        SetWindowLongPtr(disp->window,GWLP_WNDPROC,(LONG_PTR)_handle_events);
         SetEvent(disp->created);
         while( GetMessage(&msg,0,0,0) ) DispatchMessage( &msg );
       }
@@ -15776,7 +15776,7 @@ namespace cimg_library {
       png_uint_32 width, height;
       int bit_depth, color_type, interlace_type;
       png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type,
-		   int_p_NULL, int_p_NULL);
+		   nullptr, nullptr);
       int new_bit_depth = bit_depth;
       int new_color_type = color_type;
       
@@ -15787,7 +15787,7 @@ namespace cimg_library {
 	new_bit_depth = 8;
       }
       if (new_color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8){
-	png_set_gray_1_2_4_to_8(png_ptr);
+	png_set_expand_gray_1_2_4_to_8(png_ptr);
 	new_bit_depth = 8;
       }
       if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
