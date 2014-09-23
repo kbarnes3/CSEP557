@@ -324,7 +324,8 @@ static Fl_Menu_Item* additem(menu *m) {
   Fl_Menu_Item* i = &(m->m[n]);
   i->shortcut_ = 0;
   i->flags = 0;
-  i->labeltype_ = i->labelfont_ = i->labelsize_ = i->labelcolor_ = 0;
+  i->labeltype_ = FL_NORMAL_LABEL;
+  i->labelfont_ = i->labelsize_ = i->labelcolor_ = 0;
   return i;
 }
 

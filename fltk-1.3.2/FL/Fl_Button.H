@@ -77,7 +77,7 @@ class FL_EXPORT Fl_Button : public Fl_Widget {
   int shortcut_;
   char value_;
   char oldval;
-  uchar down_box_;
+  Fl_Boxtype down_box_;
 
 protected:
 

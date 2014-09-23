@@ -36,7 +36,7 @@ Fl_Menu_Item menu_f_public_member_choice[] = {
  {"private", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"public", 0,  0, (void*)(1), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"protected", 0,  0, (void*)(2), 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Choice *f_public_choice=(Fl_Choice *)0;
@@ -44,7 +44,7 @@ Fl_Choice *f_public_choice=(Fl_Choice *)0;
 Fl_Menu_Item menu_f_public_choice[] = {
  {"local", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"global", 0,  0, (void*)(1), 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Light_Button *f_c_button=(Fl_Light_Button *)0;
@@ -245,7 +245,7 @@ Fl_Choice *declblock_public_choice=(Fl_Choice *)0;
 Fl_Menu_Item menu_declblock_public_choice[] = {
  {"in source code only", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"in header and source", 0,  0, (void*)(1), 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Light_Button *declblock_public_button_x=(Fl_Light_Button *)0;
@@ -328,7 +328,7 @@ Fl_Menu_Item menu_decl_choice[] = {
  {"in header file only", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"\"static\" in source file", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"in source and \"extern\" in header", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Choice *decl_class_choice=(Fl_Choice *)0;
@@ -337,7 +337,7 @@ Fl_Menu_Item menu_decl_class_choice[] = {
  {"private", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"public", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"protected", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Input *decl_input=(Fl_Input *)0;
@@ -420,7 +420,7 @@ Fl_Menu_Item menu_data_choice[] = {
  {"in header file only", 0,  0, 0, 16, FL_NORMAL_LABEL, 0, 11, 0},
  {"\"static\" in source file", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"in source and \"extern\" in header", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Choice *data_class_choice=(Fl_Choice *)0;
@@ -429,7 +429,7 @@ Fl_Menu_Item menu_data_class_choice[] = {
  {"private", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"public", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"protected", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Input *data_input=(Fl_Input *)0;

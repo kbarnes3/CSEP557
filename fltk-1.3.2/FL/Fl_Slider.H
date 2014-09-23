@@ -61,7 +61,7 @@
 class FL_EXPORT Fl_Slider : public Fl_Valuator {
 
   float slider_size_;
-  uchar slider_;
+  Fl_Boxtype slider_;
   void _Fl_Slider();
   void draw_bg(int, int, int, int);
 

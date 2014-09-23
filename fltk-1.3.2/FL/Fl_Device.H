@@ -241,7 +241,7 @@ protected:
   /** \brief see fl_line(int x, int y, int x1, int y1, int x2, int y2). */
   virtual void line(int x, int y, int x1, int y1, int x2, int y2);
   /** \brief see fl_draw(const char *str, int n, int x, int y). */
-  virtual void draw(const char *str, int n, int x, int y) {}
+  virtual void draw(const char * /*str*/, int /*n*/, int /*x*/, int /*y*/) {}
 #ifdef __APPLE__
   virtual void draw(const char *str, int n, float x, float y) { draw(str, n, (int)(x+0.5), (int)(y+0.5));}
 #endif

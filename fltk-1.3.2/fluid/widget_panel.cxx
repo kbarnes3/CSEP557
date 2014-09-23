@@ -31,7 +31,7 @@ Fl_Menu_Item menu_[] = {
  {"text next to image", 0,  0, (void*)(FL_ALIGN_TEXT_NEXT_TO_IMAGE), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"image next to text", 0,  0, (void*)(FL_ALIGN_IMAGE_NEXT_TO_TEXT), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"image is backdrop", 0,  0, (void*)(FL_ALIGN_IMAGE_BACKDROP), 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Menu_Item menu_1[] = {
@@ -50,7 +50,7 @@ Fl_Menu_Item menu_1[] = {
  {"right top", 0,  0, (void*)(FL_ALIGN_RIGHT_TOP), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"left bottom", 0,  0, (void*)(FL_ALIGN_LEFT_BOTTOM), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"right bottom", 0,  0, (void*)(FL_ALIGN_RIGHT_BOTTOM), 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Value_Input *widget_x_input=(Fl_Value_Input *)0;
@@ -65,13 +65,13 @@ Fl_Menu_Item menu_2[] = {
  {"private", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"public", 0,  0, (void*)(1), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"protected", 0,  0, (void*)(2), 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Menu_Item menu_3[] = {
  {"local", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 11, 0},
  {"global", 0,  0, (void*)(1), 0, FL_NORMAL_LABEL, 0, 11, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Input *v_input[4]={(Fl_Input *)0};

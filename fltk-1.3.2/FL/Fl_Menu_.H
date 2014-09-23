@@ -44,7 +44,7 @@ class FL_EXPORT Fl_Menu_ : public Fl_Widget {
 protected:
 
   uchar alloc;			// flag indicates if menu_ is a dynamic copy (=1) or not (=0)
-  uchar down_box_;
+  Fl_Boxtype down_box_;
   Fl_Font textfont_;
   Fl_Fontsize textsize_;
   Fl_Color textcolor_;

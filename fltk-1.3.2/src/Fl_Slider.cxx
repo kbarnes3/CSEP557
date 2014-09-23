@@ -30,7 +30,7 @@
 
 void Fl_Slider::_Fl_Slider() {
   slider_size_ = 0;
-  slider_ = 0; // FL_UP_BOX;
+  slider_ = FL_NO_BOX;
 }
 
 /**

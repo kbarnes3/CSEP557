@@ -43,7 +43,7 @@ Fl_Menu_Item menu_i18n_type_chooser[] = {
  {"None", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"GNU gettext", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"POSIX catgets", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Input *i18n_include_input=(Fl_Input *)0;
@@ -153,7 +153,7 @@ Fl_Menu_Item menu_scheme_choice[] = {
  {"None", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"Plastic", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"GTK+", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Check_Button *tooltips_button=(Fl_Check_Button *)0;
@@ -589,7 +589,7 @@ Fl_Menu_Item menu_wVisibleFocus[] = {
  {"off", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"on", 0,  0, (void*)(1), 128, FL_NORMAL_LABEL, 0, 14, 0},
  {"default", 0,  0, (void*)(2), 0, FL_NORMAL_LABEL, 0, 14, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Choice *wArrowFocus=(Fl_Choice *)0;
@@ -603,7 +603,7 @@ Fl_Menu_Item menu_wArrowFocus[] = {
  {"off", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"on", 0,  0, (void*)(1), 128, FL_NORMAL_LABEL, 0, 14, 0},
  {"default", 0,  0, (void*)(2), 0, FL_NORMAL_LABEL, 0, 14, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Choice *wShowTooltips=(Fl_Choice *)0;
@@ -617,7 +617,7 @@ Fl_Menu_Item menu_wShowTooltips[] = {
  {"off", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"on", 0,  0, (void*)(1), 128, FL_NORMAL_LABEL, 0, 14, 0},
  {"default", 0,  0, (void*)(2), 0, FL_NORMAL_LABEL, 0, 14, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Choice *wDNDText=(Fl_Choice *)0;
@@ -631,7 +631,7 @@ Fl_Menu_Item menu_wDNDText[] = {
  {"off", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"on", 0,  0, (void*)(1), 128, FL_NORMAL_LABEL, 0, 14, 0},
  {"default", 0,  0, (void*)(2), 0, FL_NORMAL_LABEL, 0, 14, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 Fl_Choice *wUserOrSystem=(Fl_Choice *)0;
@@ -643,7 +643,7 @@ static void cb_wUserOrSystem(Fl_Choice*, void*) {
 Fl_Menu_Item menu_wUserOrSystem[] = {
  {"User Settings", 0,  0, (void*)(0), 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"System Settings", 0,  0, (void*)(1), 0, FL_NORMAL_LABEL, 0, 14, 0},
- {0,0,0,0,0,0,0,0,0}
+ { 0, 0, 0, 0, 0, FL_NORMAL_LABEL, 0, 0, 0 }
 };
 
 static void cb_Cancel1(Fl_Button*, void*) {

@@ -25,8 +25,8 @@ struct Fl_Menu_Item;
 struct FL_EXPORT Fl_Multi_Label {
   const char* labela;
   const char* labelb;
-  uchar typea;
-  uchar typeb;
+  Fl_Labeltype typea;
+  Fl_Labeltype typeb;
   void label(Fl_Widget*);
   void label(Fl_Menu_Item*);
 };

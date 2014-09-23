@@ -112,7 +112,7 @@ struct FL_EXPORT Fl_Menu_Item {
   Fl_Callback *callback_;   ///< menu item callback
   void *user_data_;	    ///< menu item user_data for the menu's callback
   int flags;		    ///< menu item flags like FL_MENU_TOGGLE, FL_MENU_RADIO
-  uchar labeltype_;	    ///< how the menu item text looks like
+  Fl_Labeltype labeltype_;	    ///< how the menu item text looks like
   Fl_Font labelfont_;	    ///< which font for this menu item text
   Fl_Fontsize labelsize_;   ///< size of menu item text
   Fl_Color labelcolor_;	    ///< menu item text color

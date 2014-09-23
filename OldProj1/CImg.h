@@ -645,7 +645,10 @@ namespace cimg_library {
     va_start(ap,format); \
     std::vsprintf(message,format,ap); \
     va_end(ap); \
+    __pragma(warning(push)) \
+    __pragma(warning(disable:4127)) \
     if (disp_flag) { \
+    __pragma(warning(pop)) \
       try { cimg::dialog(etype,message,"Abort"); } \
       catch (CImgException&) { std::fprintf(stderr,"# %s :\n%s\n\n",etype,message); } \
     } else std::fprintf(stderr,"# %s :\n%s\n\n",etype,message); \

@@ -77,7 +77,7 @@ struct FL_EXPORT Fl_Label {
   /** alignment of label */
   Fl_Align align_;
   /** type of label. \see Fl_Labeltype */
-  uchar type;
+  Fl_Labeltype type;
 
   /** Draws the label aligned to the given box */
   void draw(int,int,int,int, Fl_Align) const ;
@@ -110,7 +110,7 @@ class FL_EXPORT Fl_Widget {
   Fl_Color color2_;
   uchar type_;
   uchar damage_;
-  uchar box_;
+  Fl_Boxtype box_;
   uchar when_;
 
   const char *tooltip_;
