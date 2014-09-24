@@ -839,24 +839,24 @@ namespace cimg_library {
       static unsigned short max() { return std::numeric_limits<unsigned short>::max();; }
     };
     template<> struct type<unsigned int> {
-      static unsigned int min() { return 0; }
-      static unsigned int max() { return (unsigned int)~0U; }
+      static unsigned int min() { return std::numeric_limits<unsigned int>::min(); }
+      static unsigned int max() { return std::numeric_limits<unsigned int>::max(); }
     };
     template<> struct type<unsigned long> {
-      static unsigned long min() { return 0; }
-      static unsigned long max() { return (unsigned long)~0UL; }
+      static unsigned long min() { return std::numeric_limits<unsigned long>::min(); }
+      static unsigned long max() { return std::numeric_limits<unsigned long>::max(); }
     };
     template<> struct type<bool> {
       static bool min() { return false; }
       static bool max() { return true; }
     };
     template<> struct type<float> {
-      static float min() { return -3.4E38f; }
-      static float max() { return  3.4E38f; }
+      static float min() { return std::numeric_limits<float>::min(); }
+      static float max() { return std::numeric_limits<float>::max(); }
     };
     template<> struct type<double> {
-      static double min() { return -1.7E308; }
-      static double max() { return  1.7E308; }
+      static double min() { return std::numeric_limits<double>::min(); }
+      static double max() { return std::numeric_limits<double>::max(); }
     };
     
     // Define internal library variables.
@@ -10669,7 +10669,10 @@ namespace cimg_library {
 	    for (int z=0; z<lZ; z++) {
 	      for (int y=0; y<lY; y++) {
 		if (opacity>=1) {
+          __pragma(warning(push))
+          __pragma(warning(disable:4127))
 		  if (sizeof(T)!=1) { for (int x=0; x<lX; x++) *(ptrd++) = val; ptrd+=offX; }
+          __pragma(warning(pop))
 		  else { std::memset(ptrd,(int)val,lX); ptrd+=width; }
 		} else { for (int x=0; x<lX; x++) { *ptrd = (T)(nopacity*val+copacity*(*ptrd)); ptrd++; } ptrd+=offX; }
 	      }
@@ -18896,7 +18899,7 @@ namespace cimg_library {
       int i;
       bool loaded = false;
       unsigned int n,j,w,h,z,k,err;
-      j=0; while((i=std::fgetc(file))!='\n' && i!=EOF && j<256) tmp[j++]=i; tmp[j]='\0';
+      j=0; while((i=std::fgetc(file))!='\n' && i!=EOF && j<256) tmp[j++]=static_cast<unsigned char>(i); tmp[j]='\0';
       err=std::sscanf(tmp,"%u%*c%255[A-Za-z ]",&n,tmp2);           
       if (err!=2) throw CImgIOException("CImgList<%s>::get_load_cimg() : file '%s', Unknow CImg RAW header",pixel_type(),filename);
       CImgList<T> res(n);

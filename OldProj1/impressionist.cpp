@@ -20,8 +20,8 @@
 ImpressionistUI *impUI;
 ImpressionistDoc *impDoc;
 
-int main(int	argc, 
-		 char**	argv) 
+int main(int	/*argc*/, 
+		 char**	/*argv*/) 
 {
 	impDoc = new ImpressionistDoc();
 

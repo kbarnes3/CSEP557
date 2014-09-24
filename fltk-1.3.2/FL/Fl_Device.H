@@ -246,13 +246,13 @@ protected:
   virtual void draw(const char *str, int n, float x, float y) { draw(str, n, (int)(x+0.5), (int)(y+0.5));}
 #endif
   /** \brief see fl_draw(int angle, const char *str, int n, int x, int y). */
-  virtual void draw(int angle, const char *str, int n, int x, int y) {}
+  virtual void draw(int /*angle*/, const char * /*str*/, int /*n*/, int /*x*/, int /*y*/) {}
   /** \brief see fl_rtl_draw(const char *str, int n, int x, int y). */
-  virtual void rtl_draw(const char *str, int n, int x, int y) {};
+  virtual void rtl_draw(const char * /*str*/, int /*n*/, int /*x*/, int /*y*/) {};
   /** \brief see fl_color(Fl_Color c). */
   virtual void color(Fl_Color c) {color_ = c;}
   /** \brief see fl_color(uchar r, uchar g, uchar b). */
-  virtual void color(uchar r, uchar g, uchar b) {}
+  virtual void color(uchar /*r*/, uchar /*g*/, uchar /*b*/) {}
   /** \brief see fl_point(int x, int y). */
   virtual void point(int x, int y);
   /** \brief see fl_loop(int x0, int y0, int x1, int y1, int x2, int y2). */
@@ -341,11 +341,11 @@ protected:
   
   // Images
   /** \brief see fl_draw_image(const uchar* buf, int X,int Y,int W,int H, int D, int L). */
-  virtual   void draw_image(const uchar* buf, int X,int Y,int W,int H, int D=3, int L=0) {}
+  virtual   void draw_image(const uchar* /*buf*/, int /*X*/,int /*Y*/,int /*W*/,int /*H*/, int /*D*/=3, int /*L*/=0) {}
   /** \brief see fl_draw_image_mono(const uchar* buf, int X,int Y,int W,int H, int D, int L). */
-  virtual   void draw_image_mono(const uchar* buf, int X,int Y,int W,int H, int D=1, int L=0) {}
+  virtual   void draw_image_mono(const uchar* /*buf*/, int /*X*/,int /*Y*/,int /*W*/,int /*H*/, int /*D*/=1, int /*L*/=0) {}
   /** \brief see fl_draw_image(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D). */
-  virtual   void draw_image(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D=3) {}
+  virtual   void draw_image(Fl_Draw_Image_Cb cb, void* /*data*/, int /*X*/,int /*Y*/,int /*W*/,int /*H*/, int /*D*/=3) {}
   /** \brief see fl_draw_image_mono(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D). */
   virtual   void draw_image_mono(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D=1) {}
   // Image classes
