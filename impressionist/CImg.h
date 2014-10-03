@@ -5339,7 +5339,7 @@ namespace cimg_library {
     }
 
     static LRESULT APIENTRY _handle_events(HWND window,UINT msg,WPARAM wParam,LPARAM lParam) {
-      CImgDisplay* disp = (CImgDisplay*)GetWindowLong(window,GWL_USERDATA);
+      CImgDisplay* disp = reinterpret_cast<CImgDisplay*>(GetWindowLongPtr(window,GWLP_USERDATA));
       MSG st_msg;
 
       switch(msg) {
@@ -5489,8 +5489,8 @@ namespace cimg_library {
       disp->button = disp->wheel = disp->key = 0;
       disp->is_resized = disp->is_moved = disp->is_event = false;
       if (disp->events) {
-        SetWindowLong(disp->window,GWL_USERDATA,(LONG)disp);
-        SetWindowLong(disp->window,GWL_WNDPROC,(LONG)_handle_events);
+        SetWindowLongPtr(disp->window,GWLP_USERDATA,reinterpret_cast<LONG_PTR>(disp));
+        SetWindowLongPtr(disp->window,GWLP_WNDPROC,reinterpret_cast<LONG_PTR>(_handle_events));
         SetEvent(disp->created);
         while( GetMessage(&msg,0,0,0) ) DispatchMessage( &msg );
       }
