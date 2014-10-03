@@ -7,7 +7,7 @@
 class Dialog2 : public Fl_Group {
 	bool pressed;
 
-  static void Button_CB(Fl_Widget *w, void *data) {
+  static void Button_CB(Fl_Widget *w, void * /*data*/) {
        ((Dialog2*)w->parent())->pressed = true;
     }
 

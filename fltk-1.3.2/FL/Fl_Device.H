@@ -345,28 +345,28 @@ protected:
   /** \brief see fl_draw_image_mono(const uchar* buf, int X,int Y,int W,int H, int D, int L). */
   virtual   void draw_image_mono(const uchar* /*buf*/, int /*X*/,int /*Y*/,int /*W*/,int /*H*/, int /*D*/=1, int /*L*/=0) {}
   /** \brief see fl_draw_image(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D). */
-  virtual   void draw_image(Fl_Draw_Image_Cb cb, void* /*data*/, int /*X*/,int /*Y*/,int /*W*/,int /*H*/, int /*D*/=3) {}
+  virtual   void draw_image(Fl_Draw_Image_Cb /*cb*/, void* /*data*/, int /*X*/,int /*Y*/,int /*W*/,int /*H*/, int /*D*/=3) {}
   /** \brief see fl_draw_image_mono(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D). */
-  virtual   void draw_image_mono(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D=1) {}
+  virtual   void draw_image_mono(Fl_Draw_Image_Cb /*cb*/, void* /*data*/, int /*X*/,int /*Y*/,int /*W*/,int /*H*/, int /*D*/=1) {}
   // Image classes
   /** \brief Draws an Fl_RGB_Image object to the device. 
    *
    Specifies a bounding box for the image, with the origin (upper left-hand corner) of 
    the image offset by the cx and cy arguments.
    */
-  virtual   void draw(Fl_RGB_Image * rgb,int XP, int YP, int WP, int HP, int cx, int cy) {}
+  virtual   void draw(Fl_RGB_Image * /*rgb*/,int /*XP*/, int /*YP*/, int /*WP*/, int /*HP*/, int /*cx*/, int /*cy*/) {}
   /** \brief Draws an Fl_Pixmap object to the device. 
    *
    Specifies a bounding box for the image, with the origin (upper left-hand corner) of 
    the image offset by the cx and cy arguments.
    */
-  virtual   void draw(Fl_Pixmap * pxm,int XP, int YP, int WP, int HP, int cx, int cy) {}
+  virtual   void draw(Fl_Pixmap * /*pxm*/,int /*XP*/, int /*YP*/, int /*WP*/, int /*HP*/, int /*cx*/, int /*cy*/) {}
   /** \brief Draws an Fl_Bitmap object to the device. 
    *
    Specifies a bounding box for the image, with the origin (upper left-hand corner) of 
    the image offset by the cx and cy arguments.
    */
-  virtual void draw(Fl_Bitmap *bm, int XP, int YP, int WP, int HP, int cx, int cy) {}
+  virtual void draw(Fl_Bitmap * /*bm*/, int /*XP*/, int /*YP*/, int /*WP*/, int /*HP*/, int /*cx*/, int /*cy*/) {}
 #if FLTK_ABI_VERSION >= 10301
   virtual
 #endif
@@ -382,7 +382,7 @@ public:
   /** \brief see fl_size(). */
   Fl_Fontsize size() {return size_; }
   /** \brief see fl_width(const char *str, int n). */
-  virtual double width(const char *str, int n) {return 0;}
+  virtual double width(const char * /*str*/, int /*n*/) {return 0;}
   /** \brief see fl_width(unsigned int n). */
   virtual inline double width(unsigned int c) { char ch = (char)c; return width(&ch, 1); }
   /** \brief see fl_text_extents(const char*, int n, int& dx, int& dy, int& w, int& h). */

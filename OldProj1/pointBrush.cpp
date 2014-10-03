@@ -19,7 +19,7 @@ PointBrush::PointBrush( ImpressionistDoc* pDoc, char* name ) :
 void PointBrush::BrushBegin( const ImpBrush::Point source, const ImpBrush::Point target )
 {
 	ImpressionistDoc* pDoc = GetDocument();
-	ImpressionistUI* dlg=pDoc->m_pUI;
+	//ImpressionistUI* dlg=pDoc->m_pUI;
 
 	int size = pDoc->getSize();
 
@@ -33,7 +33,7 @@ void PointBrush::BrushBegin( const ImpBrush::Point source, const ImpBrush::Point
 void PointBrush::BrushMove( const ImpBrush::Point source, const ImpBrush::Point target )
 {
 	ImpressionistDoc* pDoc = GetDocument();
-	ImpressionistUI* dlg=pDoc->m_pUI;
+	//ImpressionistUI* dlg=pDoc->m_pUI;
 
 	if ( pDoc == NULL ) {
 		printf( "PointBrush::BrushMove  document is NULL\n" );
@@ -48,7 +48,7 @@ void PointBrush::BrushMove( const ImpBrush::Point source, const ImpBrush::Point 
 	glEnd();
 }
 
-void PointBrush::BrushEnd( const ImpBrush::Point source, const ImpBrush::Point target )
+void PointBrush::BrushEnd( const ImpBrush::Point /*source*/, const ImpBrush::Point /*target*/ )
 {
 	// do nothing so far
 }

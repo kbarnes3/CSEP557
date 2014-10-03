@@ -208,7 +208,7 @@ const char* ImpressionistUI::fileDialog(Fl_Native_File_Chooser::Type dialogType,
 // Brings up a file chooser and then loads the chosen image
 // This is called by the UI when the load image menu item is chosen
 //------------------------------------------------------------------
-void ImpressionistUI::cb_load_image(Fl_Menu_* o, void* v) 
+void ImpressionistUI::cb_load_image(Fl_Menu_* o, void* /*v*/) 
 {
 	ImpressionistDoc *pDoc=whoami(o)->getDocument();
 	/*pDoc->m_pUI->m_chooser = new Fl_File_Chooser(".", "*.{png,jpg,bmp}", 0, "Open File?" );
@@ -234,7 +234,7 @@ void ImpressionistUI::cb_load_image(Fl_Menu_* o, void* v)
 // Brings up a file chooser and then saves the painted image
 // This is called by the UI when the save image menu item is chosen
 //------------------------------------------------------------------
-void ImpressionistUI::cb_save_image(Fl_Menu_* o, void* v) 
+void ImpressionistUI::cb_save_image(Fl_Menu_* o, void* /*v*/) 
 {
 	ImpressionistDoc *pDoc=whoami(o)->getDocument();
 	/*pDoc->m_pUI->m_chooser = new Fl_File_Chooser(".", "*.png\t*.jpg", Fl_File_Chooser::CREATE, "Save");
@@ -301,12 +301,12 @@ void ImpressionistUI::cb_save_image(Fl_Menu_* o, void* v)
 // This is called by the UI when the brushes menu item
 // is chosen
 //-------------------------------------------------------------
-void ImpressionistUI::cb_brushes(Fl_Menu_* o, void* v) 
+void ImpressionistUI::cb_brushes(Fl_Menu_* o, void* /*v*/) 
 {
 	whoami(o)->m_brushDialog->show();
 }
 
-void ImpressionistUI::cb_filter_kernel(Fl_Menu_* o, void* v) 
+void ImpressionistUI::cb_filter_kernel(Fl_Menu_* o, void* /*v*/) 
 {
 	ImpressionistDoc* pDoc=whoami(o)->getDocument();
 
@@ -328,7 +328,7 @@ void ImpressionistUI::cb_filter_kernel(Fl_Menu_* o, void* v)
 // Clears the paintview canvas.
 // Called by the UI when the clear canvas menu item is chosen
 //------------------------------------------------------------
-void ImpressionistUI::cb_clear_canvas(Fl_Menu_* o, void* v)
+void ImpressionistUI::cb_clear_canvas(Fl_Menu_* o, void* /*v*/)
 {
 	ImpressionistDoc* pDoc=whoami(o)->getDocument();
 
@@ -339,7 +339,7 @@ void ImpressionistUI::cb_clear_canvas(Fl_Menu_* o, void* v)
 // Causes the Impressionist program to exit
 // Called by the UI when the quit menu item is chosen
 //------------------------------------------------------------
-void ImpressionistUI::cb_exit(Fl_Menu_* o, void* v) 
+void ImpressionistUI::cb_exit(Fl_Menu_* o, void* /*v*/) 
 {
 	whoami(o)->m_mainWindow->hide();
 	whoami(o)->m_brushDialog->hide();
@@ -352,7 +352,7 @@ void ImpressionistUI::cb_exit(Fl_Menu_* o, void* v)
 // Brings up an about dialog box
 // Called by the UI when the about menu item is chosen
 //-----------------------------------------------------------
-void ImpressionistUI::cb_about(Fl_Menu_* o, void* v) 
+void ImpressionistUI::cb_about(Fl_Menu_* /*o*/, void* /*v*/) 
 {
 	fl_message("Impressionist FLTK version for CSE 457");
 }
@@ -378,7 +378,7 @@ void ImpressionistUI::cb_brushChoice(Fl_Widget* o, void* v)
 // Clears the paintview canvas.
 // Called by the UI when the clear canvas button is pushed
 //------------------------------------------------------------
-void ImpressionistUI::cb_clear_canvas_button(Fl_Widget* o, void* v)
+void ImpressionistUI::cb_clear_canvas_button(Fl_Widget* o, void* /*v*/)
 {
 	ImpressionistDoc * pDoc = ((ImpressionistUI*)(o->user_data()))->getDocument();
 
@@ -391,7 +391,7 @@ void ImpressionistUI::cb_clear_canvas_button(Fl_Widget* o, void* v)
 // slider
 // Called by the UI when the size slider is moved
 //-----------------------------------------------------------
-void ImpressionistUI::cb_sizeSlides(Fl_Widget* o, void* v)
+void ImpressionistUI::cb_sizeSlides(Fl_Widget* o, void* /*v*/)
 {
 	((ImpressionistUI*)(o->user_data()))->m_nSize=int( ((Fl_Slider *)o)->value() ) ;
 }
