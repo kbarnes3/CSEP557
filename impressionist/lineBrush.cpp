@@ -25,7 +25,7 @@ void LineBrush::BrushBegin( const Point source, const Point target )
 
 
 
-    glPointSize( (float)size );
+    glLineWidth( (float)size );
 
     BrushMove( source, target );
 }
@@ -40,10 +40,11 @@ void LineBrush::BrushMove( const Point source, const Point target )
         return;
     }
 
-    glBegin( GL_POINTS );
+    glBegin( GL_LINES );
         SetColor( source );
 
-        glVertex2d( target.x, target.y );
+        glVertex2d( target.x-10, target.y );
+        glVertex2d( target.x+10, target.y );
 
     glEnd();
 }
