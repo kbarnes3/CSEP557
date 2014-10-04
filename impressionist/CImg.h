@@ -57,6 +57,7 @@
 #include <cstring>
 #include <cmath>
 #include <ctime>
+#include <limits>
 
 // Overcome VisualC++ 6.0 compilers namespace 'std::' bug
 #ifdef cimg_use_visualcpp6
@@ -824,32 +825,32 @@ namespace cimg_library {
     };
 
     template<> struct type<unsigned char> {
-      static unsigned char min() { return 0; }
-      static unsigned char max() { return (unsigned char)~0U; }
+      static unsigned char min() { return std::numeric_limits<unsigned char>::min(); }
+      static unsigned char max() { return std::numeric_limits<unsigned char>::max(); }
     };
     template<> struct type<unsigned short> {
-      static unsigned short min() { return 0; }
-      static unsigned short max() { return (unsigned short)~0U; }
+      static unsigned short min() { return std::numeric_limits<unsigned short>::min(); }
+      static unsigned short max() { return std::numeric_limits<unsigned short>::max();; }
     };
     template<> struct type<unsigned int> {
-      static unsigned int min() { return 0; }
-      static unsigned int max() { return (unsigned int)~0U; }
+      static unsigned int min() { return std::numeric_limits<unsigned int>::min(); }
+      static unsigned int max() { return std::numeric_limits<unsigned int>::max(); }
     };
     template<> struct type<unsigned long> {
-      static unsigned long min() { return 0; }
-      static unsigned long max() { return (unsigned long)~0UL; }
+      static unsigned long min() { return std::numeric_limits<unsigned long>::min(); }
+      static unsigned long max() { return std::numeric_limits<unsigned long>::max(); }
     };
     template<> struct type<bool> {
       static bool min() { return false; }
       static bool max() { return true; }
     };
     template<> struct type<float> {
-      static float min() { return -3.4E38f; }
-      static float max() { return  3.4E38f; }
+      static float min() { return std::numeric_limits<float>::min(); }
+      static float max() { return std::numeric_limits<float>::max(); }
     };
     template<> struct type<double> {
-      static double min() { return -1.7E308; }
-      static double max() { return  1.7E308; }
+      static double min() { return std::numeric_limits<double>::min(); }
+      static double max() { return std::numeric_limits<double>::max(); }
     };
     
     // Define internal library variables.
@@ -5339,7 +5340,7 @@ namespace cimg_library {
     }
 
     static LRESULT APIENTRY _handle_events(HWND window,UINT msg,WPARAM wParam,LPARAM lParam) {
-      CImgDisplay* disp = reinterpret_cast<CImgDisplay*>(GetWindowLongPtr(window,GWLP_USERDATA));
+      CImgDisplay* disp = (CImgDisplay*)GetWindowLongPtr(window,GWLP_USERDATA);
       MSG st_msg;
 
       switch(msg) {
@@ -5489,8 +5490,8 @@ namespace cimg_library {
       disp->button = disp->wheel = disp->key = 0;
       disp->is_resized = disp->is_moved = disp->is_event = false;
       if (disp->events) {
-        SetWindowLongPtr(disp->window,GWLP_USERDATA,reinterpret_cast<LONG_PTR>(disp));
-        SetWindowLongPtr(disp->window,GWLP_WNDPROC,reinterpret_cast<LONG_PTR>(_handle_events));
+        SetWindowLongPtr(disp->window,GWLP_USERDATA,(LONG_PTR)disp);
+        SetWindowLongPtr(disp->window,GWLP_WNDPROC,(LONG_PTR)_handle_events);
         SetEvent(disp->created);
         while( GetMessage(&msg,0,0,0) ) DispatchMessage( &msg );
       }
@@ -15776,7 +15777,7 @@ namespace cimg_library {
       png_uint_32 width, height;
       int bit_depth, color_type, interlace_type;
       png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type,
-		   int_p_NULL, int_p_NULL);
+		   nullptr, nullptr);
       int new_bit_depth = bit_depth;
       int new_color_type = color_type;
       
@@ -18889,7 +18890,7 @@ namespace cimg_library {
       int i;
       bool loaded = false;
       unsigned int n,j,w,h,z,k,err;
-      j=0; while((i=std::fgetc(file))!='\n' && i!=EOF && j<256) tmp[j++]=i; tmp[j]='\0';
+      j=0; while((i=std::fgetc(file))!='\n' && i!=EOF && j<256) tmp[j++]=static_cast<unsigned char>(i); tmp[j]='\0';
       err=std::sscanf(tmp,"%u%*c%255[A-Za-z ]",&n,tmp2);           
       if (err!=2) throw CImgIOException("CImgList<%s>::get_load_cimg() : file '%s', Unknow CImg RAW header",pixel_type(),filename);
       CImgList<T> res(n);

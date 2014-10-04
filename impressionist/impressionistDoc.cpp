@@ -210,12 +210,12 @@ int ImpressionistDoc::clearCanvas()
  *		divisor, offset:	each pixel after filtering should be
  *							divided by divisor and then added by offset
  */
-void ImpressionistDoc::applyFilter( const unsigned char* sourceBuffer,
-		int srcBufferWidth, int srcBufferHeight,
-		unsigned char* destBuffer,
-		const double *filterKernel, 
-		int knlWidth, int knlHeight, 
-		double divisor, double offset )
+void ImpressionistDoc::applyFilter( const unsigned char* /*sourceBuffer*/,
+		int /*srcBufferWidth*/, int /*srcBufferHeight*/,
+		unsigned char* /*destBuffer*/,
+		const double * /*filterKernel*/, 
+		int /*knlWidth*/, int /*knlHeight*/, 
+		double /*divisor*/, double /*offset*/ )
 {
 	// This needs to be implemented for image filtering to work.
 
