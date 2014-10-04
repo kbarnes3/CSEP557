@@ -58,7 +58,7 @@
       <BrowseInformation>true</BrowseInformation>
       <CompileAs>Default</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4127;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeaderOutputFile>$(IntDir)impressionist.pch</PrecompiledHeaderOutputFile>
@@ -68,7 +68,8 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <ResourceCompile>
       <Culture>0x0409</Culture>
