@@ -35,6 +35,7 @@ public:
 	void	setBrushType(int type);			// called by the UI to set the brushType
 	int		getSize();						// get the UI size
 	void	setSize(int size);				// set the UI size
+	int		getLineWidth();						// get the UI line width
 	char*	getImageName();					// get the current image name
 	
 

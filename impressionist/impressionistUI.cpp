@@ -331,6 +331,16 @@ void ImpressionistUI::cb_sizeSlides(Fl_Widget* o, void* /*v*/)
 	((ImpressionistUI*)(o->user_data()))->m_nSize=int( ((Fl_Slider *)o)->value() ) ;
 }
 
+//-----------------------------------------------------------
+// Updates the line width to use from the value of the size
+// slider
+// Called by the UI when the line width slider is moved
+//-----------------------------------------------------------
+void ImpressionistUI::cb_lineWidthSlides(Fl_Widget* o, void* /*v*/)
+{
+	((ImpressionistUI*)(o->user_data()))->m_nLineWidth=int( ((Fl_Slider *)o)->value() ) ;
+}
+
 //---------------------------------- per instance functions --------------------------------------
 
 //------------------------------------------------
@@ -377,6 +387,14 @@ void ImpressionistUI::setDocument(ImpressionistDoc* doc)
 int ImpressionistUI::getSize()
 {
 	return m_nSize;
+}
+
+//------------------------------------------------
+// Return the line width
+//------------------------------------------------
+int ImpressionistUI::getLineWidth()
+{
+	return m_nLineWidth;
 }
 
 //-------------------------------------------------
@@ -539,6 +557,7 @@ ImpressionistUI::ImpressionistUI() {
 	// init values
 
 	m_nSize = 10;
+	m_nLineWidth = 1;
 
 	// brush dialog definition
 	m_brushDialog = new Fl_Window(400, 325, "Brush Dialog");
@@ -565,6 +584,19 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushSizeSlider->value(m_nSize);
 		m_BrushSizeSlider->align(FL_ALIGN_RIGHT);
 		m_BrushSizeSlider->callback(cb_sizeSlides);
+
+		// Add line width slider to the dialog 
+		m_BrushSizeSlider = new Fl_Value_Slider(10, 110, 300, 20, "Line Width");
+		m_BrushSizeSlider->user_data((void*)(this));	// record self to be used by static callback functions
+		m_BrushSizeSlider->type(FL_HOR_NICE_SLIDER);
+        m_BrushSizeSlider->labelfont(FL_COURIER);
+        m_BrushSizeSlider->labelsize(12);
+		m_BrushSizeSlider->minimum(1);
+		m_BrushSizeSlider->maximum(40);
+		m_BrushSizeSlider->step(1);
+		m_BrushSizeSlider->value(m_nLineWidth);
+		m_BrushSizeSlider->align(FL_ALIGN_RIGHT);
+		m_BrushSizeSlider->callback(cb_lineWidthSlides);
 
     m_brushDialog->end();	
 
