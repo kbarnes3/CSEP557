@@ -304,6 +304,19 @@ void ImpressionistUI::cb_brushChoice(Fl_Widget* o, void* v)
 	ImpressionistDoc* pDoc=pUI->getDocument();
 
 	int type=reinterpret_cast<int>(v);
+	switch(type)
+	{
+		case BRUSH_POINTS:
+		case BRUSH_CIRCLES:
+		case BRUSH_SCATTERED_POINTS:
+		case BRUSH_SCATTERED_CIRCLES:
+			pUI->m_LineWidthSlider->deactivate();
+			break;
+		case BRUSH_LINES:
+		case BRUSH_SCATTERED_LINES:
+			pUI->m_LineWidthSlider->activate();
+			break;
+	}
 
 
 	pDoc->setBrushType(type);
@@ -586,17 +599,18 @@ ImpressionistUI::ImpressionistUI() {
 		m_BrushSizeSlider->callback(cb_sizeSlides);
 
 		// Add line width slider to the dialog 
-		m_BrushSizeSlider = new Fl_Value_Slider(10, 110, 300, 20, "Line Width");
-		m_BrushSizeSlider->user_data((void*)(this));	// record self to be used by static callback functions
-		m_BrushSizeSlider->type(FL_HOR_NICE_SLIDER);
-        m_BrushSizeSlider->labelfont(FL_COURIER);
-        m_BrushSizeSlider->labelsize(12);
-		m_BrushSizeSlider->minimum(1);
-		m_BrushSizeSlider->maximum(40);
-		m_BrushSizeSlider->step(1);
-		m_BrushSizeSlider->value(m_nLineWidth);
-		m_BrushSizeSlider->align(FL_ALIGN_RIGHT);
-		m_BrushSizeSlider->callback(cb_lineWidthSlides);
+		m_LineWidthSlider = new Fl_Value_Slider(10, 110, 300, 20, "Line Width");
+		m_LineWidthSlider->user_data((void*)(this));	// record self to be used by static callback functions
+		m_LineWidthSlider->type(FL_HOR_NICE_SLIDER);
+        m_LineWidthSlider->labelfont(FL_COURIER);
+        m_LineWidthSlider->labelsize(12);
+		m_LineWidthSlider->minimum(1);
+		m_LineWidthSlider->maximum(40);
+		m_LineWidthSlider->step(1);
+		m_LineWidthSlider->value(m_nLineWidth);
+		m_LineWidthSlider->align(FL_ALIGN_RIGHT);
+		m_LineWidthSlider->callback(cb_lineWidthSlides);
+		m_LineWidthSlider->deactivate();
 
     m_brushDialog->end();	
 
