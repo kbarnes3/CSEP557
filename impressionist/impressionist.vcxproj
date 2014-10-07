@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="circleBrush.cpp" />
     <ClCompile Include="FltDesignUI.cpp" />
     <ClCompile Include="imageio.cpp" />
     <ClCompile Include="impBrush.cpp" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="brushes.h" />
+    <ClInclude Include="circleBrush.h" />
     <ClInclude Include="dialog.h" />
     <ClInclude Include="FltDesignUI.h" />
     <ClInclude Include="imageio.h" />

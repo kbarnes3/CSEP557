@@ -2,10 +2,10 @@
 
 #include "impBrush.h"
 
-class LineBrush : public ImpBrush
+class CircleBrush : public ImpBrush
 {
 public:
-    LineBrush( ImpressionistDoc* pDoc = NULL, char* name = NULL );
+    CircleBrush( ImpressionistDoc* pDoc = NULL, char* name = NULL );
 
     void BrushBegin( const Point source, const Point target );
     void BrushMove( const Point source, const Point target );
