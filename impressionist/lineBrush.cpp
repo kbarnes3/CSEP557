@@ -23,7 +23,7 @@ void LineBrush::BrushBegin( const Point source, const Point target )
 
     int width = pDoc->getLineWidth();
 
-    glLineWidth( (float)width );
+    glLineWidth(static_cast<float>(width));
 
     BrushMove( source, target );
 }
@@ -40,14 +40,20 @@ void LineBrush::BrushMove( const Point source, const Point target )
 
     int size = pDoc->getSize();
     int halfSize = size / 2;
+    int angle = pDoc->getLineAngle();
 
-    glBegin( GL_LINES );
-        SetColor( source );
+    glPushMatrix();
+        glTranslatef(target.x, target.y, 0.0);
+        glRotatef(angle, 0.0, 0.0, 1.0);
 
-        glVertex2d( target.x-halfSize, target.y );
-        glVertex2d( target.x+halfSize, target.y );
+        glBegin( GL_LINES );
+            SetColor( source );
 
-    glEnd();
+            glVertex2d(-halfSize, 0);
+            glVertex2d(size - halfSize, 0);
+
+        glEnd();
+    glPopMatrix();
 }
 
 void LineBrush::BrushEnd( const Point /*source*/, const Point /*target*/ )

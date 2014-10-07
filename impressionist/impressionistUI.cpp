@@ -638,10 +638,10 @@ ImpressionistUI::ImpressionistUI() {
         m_LineAngleSlider->step(1);
         m_LineAngleSlider->value(m_nLineAngle);
         m_LineAngleSlider->align(FL_ALIGN_RIGHT);
-        m_LineAngleSlider->callback(cb_lineWidthSlides);
+        m_LineAngleSlider->callback(cb_lineAngleSlides);
         m_LineAngleSlider->deactivate();
 
-    m_brushDialog->end();   
+    m_brushDialog->end();
 
 }
 
