@@ -20,39 +20,39 @@
 #include "lineBrush.h"
 
 
-#define DESTROY(p)	{  if ((p)!=NULL) {delete [] p; p=NULL; } }
+#define DESTROY(p)  {  if ((p)!=NULL) {delete [] p; p=NULL; } }
 
 ImpressionistDoc::ImpressionistDoc() 
 {
-	// Set NULL image name as init. 
-	m_imageName[0]	='\0';	
+    // Set NULL image name as init. 
+    m_imageName[0]  ='\0';  
 
-	m_nWidth		= -1;
-	m_ucImage		= NULL;
-	m_ucPainting	= NULL;
-	m_ucPreviewBackup = NULL;
+    m_nWidth        = -1;
+    m_ucImage       = NULL;
+    m_ucPainting    = NULL;
+    m_ucPreviewBackup = NULL;
 
 
-	// create one instance of each brush
-	ImpBrush::c_nBrushCount	= NUM_BRUSH_TYPE;
-	ImpBrush::c_pBrushes	= new ImpBrush* [ImpBrush::c_nBrushCount];
+    // create one instance of each brush
+    ImpBrush::c_nBrushCount = NUM_BRUSH_TYPE;
+    ImpBrush::c_pBrushes    = new ImpBrush* [ImpBrush::c_nBrushCount];
 
-	ImpBrush::c_pBrushes[BRUSH_POINTS]	= new PointBrush( this, "Points" );
+    ImpBrush::c_pBrushes[BRUSH_POINTS]  = new PointBrush( this, "Points" );
 
-	// Note: You should implement these 5 brushes.  They are set the same (PointBrush) for now
-	ImpBrush::c_pBrushes[BRUSH_LINES]				
-		= new LineBrush(this, "Lines");
-	ImpBrush::c_pBrushes[BRUSH_CIRCLES]				
-		= new PointBrush( this, "Circles" );
-	ImpBrush::c_pBrushes[BRUSH_SCATTERED_POINTS]	
-		= new PointBrush( this, "Scattered Points" );
-	ImpBrush::c_pBrushes[BRUSH_SCATTERED_LINES]		
-		= new PointBrush( this, "Scattered Lines" );
-	ImpBrush::c_pBrushes[BRUSH_SCATTERED_CIRCLES]	
-		= new PointBrush( this, "Scattered Circles" );
+    // Note: You should implement these 5 brushes.  They are set the same (PointBrush) for now
+    ImpBrush::c_pBrushes[BRUSH_LINES]               
+        = new LineBrush(this, "Lines");
+    ImpBrush::c_pBrushes[BRUSH_CIRCLES]             
+        = new PointBrush( this, "Circles" );
+    ImpBrush::c_pBrushes[BRUSH_SCATTERED_POINTS]    
+        = new PointBrush( this, "Scattered Points" );
+    ImpBrush::c_pBrushes[BRUSH_SCATTERED_LINES]     
+        = new PointBrush( this, "Scattered Lines" );
+    ImpBrush::c_pBrushes[BRUSH_SCATTERED_CIRCLES]   
+        = new PointBrush( this, "Scattered Circles" );
 
-	// make one of the brushes current
-	m_pCurrentBrush	= ImpBrush::c_pBrushes[0];
+    // make one of the brushes current
+    m_pCurrentBrush = ImpBrush::c_pBrushes[0];
 
 }
 
@@ -62,7 +62,7 @@ ImpressionistDoc::ImpressionistDoc()
 //---------------------------------------------------------
 void ImpressionistDoc::setUI(ImpressionistUI* ui) 
 {
-	m_pUI	= ui;
+    m_pUI   = ui;
 }
 
 //---------------------------------------------------------
@@ -70,7 +70,7 @@ void ImpressionistDoc::setUI(ImpressionistUI* ui)
 //---------------------------------------------------------
 char* ImpressionistDoc::getImageName() 
 {
-	return m_imageName;
+    return m_imageName;
 }
 
 //---------------------------------------------------------
@@ -79,7 +79,7 @@ char* ImpressionistDoc::getImageName()
 //---------------------------------------------------------
 void ImpressionistDoc::setBrushType(int type)
 {
-	m_pCurrentBrush	= ImpBrush::c_pBrushes[type];
+    m_pCurrentBrush = ImpBrush::c_pBrushes[type];
 }
 
 //---------------------------------------------------------
@@ -87,7 +87,7 @@ void ImpressionistDoc::setBrushType(int type)
 //---------------------------------------------------------
 int ImpressionistDoc::getLineWidth()
 {
-	return m_pUI->getLineWidth();
+    return m_pUI->getLineWidth();
 }
 
 //---------------------------------------------------------
@@ -95,7 +95,7 @@ int ImpressionistDoc::getLineWidth()
 //---------------------------------------------------------
 int ImpressionistDoc::getSize()
 {
-	return m_pUI->getSize();
+    return m_pUI->getSize();
 }
 
 //---------------------------------------------------------
@@ -105,50 +105,50 @@ int ImpressionistDoc::getSize()
 //---------------------------------------------------------
 int ImpressionistDoc::loadImage(const char *iname) 
 {
-	// try to open the image to read
-	unsigned char*	data;
-	int				width, 
-					height;
+    // try to open the image to read
+    unsigned char*  data;
+    int             width, 
+                    height;
 
-	if ( (data=load(iname, width, height))==NULL ) 
-	{
-		fl_alert("Can't load image file");
-		return 0;
-	}
+    if ( (data=load(iname, width, height))==NULL ) 
+    {
+        fl_alert("Can't load image file");
+        return 0;
+    }
 
-	// reflect the fact of loading the new image
-	m_nWidth		= width;
-	m_nPaintWidth	= width;
-	m_nHeight		= height;
-	m_nPaintHeight	= height;
+    // reflect the fact of loading the new image
+    m_nWidth        = width;
+    m_nPaintWidth   = width;
+    m_nHeight       = height;
+    m_nPaintHeight  = height;
 
-	// release old storage
-	delete [] m_ucImage;
-	delete [] m_ucPainting;
-	delete [] m_ucPreviewBackup;
+    // release old storage
+    delete [] m_ucImage;
+    delete [] m_ucPainting;
+    delete [] m_ucPreviewBackup;
 
-	m_ucImage		= data;
+    m_ucImage       = data;
 
-	// allocate space for draw view
-	m_ucPainting		= new unsigned char [width*height*3];
-	m_ucPreviewBackup	= new unsigned char [width*height*3];
-	memset(m_ucPainting, 0, width*height*3);
+    // allocate space for draw view
+    m_ucPainting        = new unsigned char [width*height*3];
+    m_ucPreviewBackup   = new unsigned char [width*height*3];
+    memset(m_ucPainting, 0, width*height*3);
 
-	m_pUI->m_mainWindow->resize(m_pUI->m_mainWindow->x(), 
-								m_pUI->m_mainWindow->y(), 
-								width*2, 
-								height+25);
+    m_pUI->m_mainWindow->resize(m_pUI->m_mainWindow->x(), 
+                                m_pUI->m_mainWindow->y(), 
+                                width*2, 
+                                height+25);
 
-	// display it on origView
-	m_pUI->m_origView->resizeWindow(width, height);	
-	m_pUI->m_origView->refresh();
+    // display it on origView
+    m_pUI->m_origView->resizeWindow(width, height); 
+    m_pUI->m_origView->refresh();
 
-	// refresh paint view as well
-	m_pUI->m_paintView->resizeWindow(width, height);	
-	m_pUI->m_paintView->refresh();
+    // refresh paint view as well
+    m_pUI->m_paintView->resizeWindow(width, height);    
+    m_pUI->m_paintView->refresh();
 
 
-	return 1;
+    return 1;
 }
 
 
@@ -160,9 +160,9 @@ int ImpressionistDoc::loadImage(const char *iname)
 int ImpressionistDoc::saveImage(const char *iname, const char * type, int quality) 
 {
 
-	save(iname, m_ucPainting, m_nPaintWidth, m_nPaintHeight, type, quality);
+    save(iname, m_ucPainting, m_nPaintWidth, m_nPaintHeight, type, quality);
 
-	return 1;
+    return 1;
 }
 
 //----------------------------------------------------------------
@@ -173,20 +173,20 @@ int ImpressionistDoc::saveImage(const char *iname, const char * type, int qualit
 int ImpressionistDoc::clearCanvas() 
 {
 
-	// Release old storage
-	if ( m_ucPainting ) 
-	{
-		delete [] m_ucPainting;
+    // Release old storage
+    if ( m_ucPainting ) 
+    {
+        delete [] m_ucPainting;
 
-		// allocate space for draw view
-		m_ucPainting	= new unsigned char [m_nPaintWidth*m_nPaintHeight*3];
-		memset(m_ucPainting, 0, m_nPaintWidth*m_nPaintHeight*3);
+        // allocate space for draw view
+        m_ucPainting    = new unsigned char [m_nPaintWidth*m_nPaintHeight*3];
+        memset(m_ucPainting, 0, m_nPaintWidth*m_nPaintHeight*3);
 
-		// refresh paint view as well	
-		m_pUI->m_paintView->refresh();
-	}
-	
-	return 0;
+        // refresh paint view as well   
+        m_pUI->m_paintView->refresh();
+    }
+    
+    return 0;
 }
 
 // Apply the filter specified by filter_kernel to the 
@@ -199,34 +199,34 @@ int ImpressionistDoc::clearCanvas()
 
 
 /*
- *	INPUT: 
- *		sourceBuffer:		the original image buffer, 
- *		srcBufferWidth:		the width of the image buffer
- *		srcBufferHeight:	the height of the image buffer
- *							the buffer is arranged such that 
- *							origImg[3*(row*srcBufferWidth+column)+0], 
- *							origImg[3*(row*srcBufferWidth+column)+1], 
- *							origImg[3*(row*srcBufferWidth+column)+2]
- *							are R, G, B values for pixel at (column, row).
- *		destBuffer:			the image buffer to put the resulting
- *							image in.  It is always the same size
- *							as the source buffer.
+ *  INPUT: 
+ *      sourceBuffer:       the original image buffer, 
+ *      srcBufferWidth:     the width of the image buffer
+ *      srcBufferHeight:    the height of the image buffer
+ *                          the buffer is arranged such that 
+ *                          origImg[3*(row*srcBufferWidth+column)+0], 
+ *                          origImg[3*(row*srcBufferWidth+column)+1], 
+ *                          origImg[3*(row*srcBufferWidth+column)+2]
+ *                          are R, G, B values for pixel at (column, row).
+ *      destBuffer:         the image buffer to put the resulting
+ *                          image in.  It is always the same size
+ *                          as the source buffer.
  *
- *      filterKernel:		the 2D filter kernel,
- *		knlWidth:			the width of the kernel
- *		knlHeight:			the height of the kernel
+ *      filterKernel:       the 2D filter kernel,
+ *      knlWidth:           the width of the kernel
+ *      knlHeight:          the height of the kernel
  *
- *		divisor, offset:	each pixel after filtering should be
- *							divided by divisor and then added by offset
+ *      divisor, offset:    each pixel after filtering should be
+ *                          divided by divisor and then added by offset
  */
 void ImpressionistDoc::applyFilter( const unsigned char* /*sourceBuffer*/,
-		int /*srcBufferWidth*/, int /*srcBufferHeight*/,
-		unsigned char* /*destBuffer*/,
-		const double * /*filterKernel*/, 
-		int /*knlWidth*/, int /*knlHeight*/, 
-		double /*divisor*/, double /*offset*/ )
+        int /*srcBufferWidth*/, int /*srcBufferHeight*/,
+        unsigned char* /*destBuffer*/,
+        const double * /*filterKernel*/, 
+        int /*knlWidth*/, int /*knlHeight*/, 
+        double /*divisor*/, double /*offset*/ )
 {
-	// This needs to be implemented for image filtering to work.
+    // This needs to be implemented for image filtering to work.
 
 
 }
@@ -237,17 +237,17 @@ void ImpressionistDoc::applyFilter( const unsigned char* /*sourceBuffer*/,
 //------------------------------------------------------------------
 GLubyte* ImpressionistDoc::GetOriginalPixel( int x, int y )
 {
-	if ( x < 0 ) 
-		x = 0;
-	else if ( x >= m_nWidth ) 
-		x = m_nWidth-1;
+    if ( x < 0 ) 
+        x = 0;
+    else if ( x >= m_nWidth ) 
+        x = m_nWidth-1;
 
-	if ( y < 0 ) 
-		y = 0;
-	else if ( y >= m_nHeight ) 
-		y = m_nHeight-1;
+    if ( y < 0 ) 
+        y = 0;
+    else if ( y >= m_nHeight ) 
+        y = m_nHeight-1;
 
-	return (GLubyte*)(m_ucImage + 3 * (y*m_nWidth + x));
+    return (GLubyte*)(m_ucImage + 3 * (y*m_nWidth + x));
 }
 
 //----------------------------------------------------------------
@@ -255,7 +255,7 @@ GLubyte* ImpressionistDoc::GetOriginalPixel( int x, int y )
 //----------------------------------------------------------------
 GLubyte* ImpressionistDoc::GetOriginalPixel( const Point p )
 {
-	return GetOriginalPixel( p.x, p.y );
+    return GetOriginalPixel( p.x, p.y );
 }
 
 
