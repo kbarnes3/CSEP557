@@ -19,7 +19,8 @@
 #define FALSE	0
 
 #ifdef WIN32
-#define M_PI	3.1415926535F
+#define _USE_MATH_DEFINES
+#include <cmath>
 #endif
 
 

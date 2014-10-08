@@ -11,12 +11,8 @@ CircleBrush::CircleBrush( ImpressionistDoc* pDoc, char* name ) :
 
 void CircleBrush::BrushBegin( const Point source, const Point target )
 {
-    ImpressionistDoc* pDoc = GetDocument();
+    //ImpressionistDoc* pDoc = GetDocument();
     //ImpressionistUI* dlg=pDoc->m_pUI;
-
-    int width = pDoc->getLineWidth();
-
-    glLineWidth(static_cast<float>(width));
 
     BrushMove( source, target );
 }
@@ -31,22 +27,20 @@ void CircleBrush::BrushMove( const Point source, const Point target )
         return;
     }
 
-    int size = pDoc->getSize();
-    int halfSize = size / 2;
-    int angle = pDoc->getLineAngle();
+    double radius = static_cast<double>(pDoc->getSize());
+    double drawingStep = 2.0 * M_PI / 100.0; // Draw a triangular fan with 100 parts to approximate a circle
 
-    glPushMatrix();
-        glTranslatef(target.x, target.y, 0.0);
-        glRotatef(angle, 0.0, 0.0, 1.0);
+    glBegin(GL_TRIANGLE_FAN);
+        SetColor( source );
 
-        glBegin( GL_LINES );
-            SetColor( source );
+        glVertex2d(target.x, target.y);
 
-            glVertex2d(-halfSize, 0);
-            glVertex2d(size - halfSize, 0);
+        for (double theta = 0.0; theta < 2.0 * M_PI; theta += drawingStep)
+        {
+            glVertex2d(target.x + (sin(theta) * radius), target.y + (cos(theta) * radius));
+        }
 
-        glEnd();
-    glPopMatrix();
+    glEnd();
 }
 
 void CircleBrush::BrushEnd( const Point /*source*/, const Point /*target*/ )
