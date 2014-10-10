@@ -239,7 +239,7 @@ void ImpressionistDoc::applyFilter( const unsigned char* /*sourceBuffer*/,
 //------------------------------------------------------------------
 // Get the color of the pixel in the original image at coord x and y
 //------------------------------------------------------------------
-GLubyte* ImpressionistDoc::GetOriginalPixel( int x, int y )
+GLubyte* ImpressionistDoc::GetOriginalPixel( int x, int y ) const
 {
     if ( x < 0 ) 
         x = 0;
@@ -257,7 +257,7 @@ GLubyte* ImpressionistDoc::GetOriginalPixel( int x, int y )
 //----------------------------------------------------------------
 // Get the color of the pixel in the original image at point p
 //----------------------------------------------------------------
-GLubyte* ImpressionistDoc::GetOriginalPixel( const Point p )
+GLubyte* ImpressionistDoc::GetOriginalPixel( const Point p ) const
 {
     return GetOriginalPixel( p.x, p.y );
 }

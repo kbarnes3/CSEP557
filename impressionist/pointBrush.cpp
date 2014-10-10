@@ -18,38 +18,32 @@ PointBrush::PointBrush( ImpressionistDoc* pDoc, char* name ) :
 
 void PointBrush::BrushBegin( const Point source, const Point target )
 {
-    ImpressionistDoc* pDoc = GetDocument();
-    //ImpressionistUI* dlg=pDoc->m_pUI;
-
-    int size = pDoc->getSize();
-
-
-
-    glPointSize( (float)size );
-
     BrushMove( source, target );
 }
 
 void PointBrush::BrushMove( const Point source, const Point target )
 {
     ImpressionistDoc* pDoc = GetDocument();
-    //ImpressionistUI* dlg=pDoc->m_pUI;
 
-    if ( pDoc == NULL ) {
-        printf( "PointBrush::BrushMove  document is NULL\n" );
-        return;
-    }
+    int size = pDoc->getSize();
 
-    glBegin( GL_POINTS );
-        SetColor( source );
+    glPointSize(static_cast<float>(size));
 
-        glVertex2d( target.x, target.y );
-
+    glBegin(GL_POINTS);
+        DrawPoint(pDoc, source, target);
     glEnd();
 }
 
 void PointBrush::BrushEnd( const Point /*source*/, const Point /*target*/ )
 {
     // do nothing so far
+}
+
+/*static*/ void PointBrush::DrawPoint(_In_ const ImpressionistDoc* pDoc, _In_ const Point source, _In_ const Point target)
+{
+    // This should be inside a glBegin(GL_POINTS)/glEnd() block
+    SetColorFromDocument(pDoc, source);
+
+    glVertex2d( target.x, target.y );
 }
 
