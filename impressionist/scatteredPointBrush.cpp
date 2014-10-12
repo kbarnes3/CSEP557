@@ -1,6 +1,7 @@
 #include "impressionistDoc.h"
 #include "impressionistUI.h"
 #include "scatteredPointBrush.h"
+#include "pointBrush.h"
 
 extern float frand();
 
@@ -14,6 +15,8 @@ void ScatteredPointBrush::BrushBegin( const Point source, const Point target )
     //ImpressionistDoc* pDoc = GetDocument();
     //ImpressionistUI* dlg=pDoc->m_pUI;
 
+    glPointSize(1.0f);
+
     BrushMove( source, target );
 }
 
@@ -23,23 +26,34 @@ void ScatteredPointBrush::BrushMove( const Point source, const Point target )
     //ImpressionistUI* dlg=pDoc->m_pUI;
 
     if ( pDoc == NULL ) {
-        printf( "ScatteredPointBrush::BrushMove  document is NULL\n" );
+        printf( "ScatteredPointBrush::BrushMove document is NULL\n" );
         return;
     }
 
-    double radius = static_cast<double>(pDoc->getSize());
-    double drawingStep = 2.0 * M_PI / 100.0; // Draw a triangular fan with 100 parts to approximate a circle
+    int size = pDoc->getSize();
+    int halfSize = size / 2;
+    int minX = source.x - halfSize;
+    int maxX = minX + size;
+    int minY = source.y - halfSize;
+    int maxY = minY + size;
+    int offsetX = target.x - source.x;
+    int offsetY = target.y - source.y;
 
-    glBegin(GL_TRIANGLE_FAN);
-        SetColor( source );
-
-        glVertex2d(target.x, target.y);
-
-        for (double theta = 0.0; theta < 2.0 * M_PI; theta += drawingStep)
+    glBegin(GL_POINTS);
+        for (int x = minX; x <= maxX; x++)
         {
-            glVertex2d(target.x + (sin(theta) * radius), target.y + (cos(theta) * radius));
-        }
+            for (int y = minY; y <= maxY; y++)
+            {
+                int paintPoint = rand() % 100;
 
+                if (paintPoint >= 75)
+                {
+                    Point individualSource(x, y);
+                    Point individualTarget(x + offsetX, y + offsetY);
+                    PointBrush::DrawPoint(pDoc, individualSource, individualTarget);
+                }
+            }
+        }
     glEnd();
 }
 
