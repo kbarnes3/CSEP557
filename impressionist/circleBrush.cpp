@@ -28,10 +28,20 @@ void CircleBrush::BrushMove( const Point source, const Point target )
     }
 
     double radius = static_cast<double>(pDoc->getSize());
-    double drawingStep = 2.0 * M_PI / 100.0; // Draw a triangular fan with 100 parts to approximate a circle
+    DrawCircle(pDoc, source, target, radius);
+}
+
+void CircleBrush::BrushEnd( const Point /*source*/, const Point /*target*/ )
+{
+    // do nothing so far
+}
+
+/*static*/ void CircleBrush::DrawCircle(_In_ const ImpressionistDoc* pDoc, _In_ const Point source, _In_ const Point target, _In_ double radius)
+{
+    static const double drawingStep = 2.0 * M_PI / 100.0; // Draw a triangular fan with 100 parts to approximate a circle
 
     glBegin(GL_TRIANGLE_FAN);
-        SetColor( source );
+        SetColorFromDocument(pDoc, source);
 
         glVertex2d(target.x, target.y);
 
@@ -42,9 +52,3 @@ void CircleBrush::BrushMove( const Point source, const Point target )
 
     glEnd();
 }
-
-void CircleBrush::BrushEnd( const Point /*source*/, const Point /*target*/ )
-{
-    // do nothing so far
-}
-
