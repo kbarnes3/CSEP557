@@ -39,21 +39,9 @@ void LineBrush::BrushMove( const Point source, const Point target )
     }
 
     int size = pDoc->getSize();
-    int halfSize = size / 2;
     int angle = pDoc->getLineAngle();
 
-    glPushMatrix();
-        glTranslatef(target.x, target.y, 0.0);
-        glRotatef(angle, 0.0, 0.0, 1.0);
-
-        glBegin( GL_LINES );
-            SetColor( source );
-
-            glVertex2d(-halfSize, 0);
-            glVertex2d(size - halfSize, 0);
-
-        glEnd();
-    glPopMatrix();
+    DrawLine(pDoc, source, target, size, angle);
 }
 
 void LineBrush::BrushEnd( const Point /*source*/, const Point /*target*/ )
@@ -61,3 +49,20 @@ void LineBrush::BrushEnd( const Point /*source*/, const Point /*target*/ )
     // do nothing so far
 }
 
+/*static*/ void LineBrush::DrawLine(_In_ const ImpressionistDoc* pDoc, _In_ const Point source, _In_ const Point target, _In_ int size, _In_ int angle)
+{
+    int halfSize = size / 2;
+
+    glPushMatrix();
+        glTranslatef(target.x, target.y, 0.0);
+        glRotatef(angle, 0.0, 0.0, 1.0);
+
+        glBegin(GL_LINES);
+            SetColorFromDocument(pDoc, source);
+
+            glVertex2d(-halfSize, 0);
+            glVertex2d(size - halfSize, 0);
+
+        glEnd();
+    glPopMatrix();
+}
